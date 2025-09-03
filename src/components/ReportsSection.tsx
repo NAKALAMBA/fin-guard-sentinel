@@ -1,0 +1,159 @@
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { AlertTriangle, Clock, MapPin, TrendingUp } from "lucide-react";
+
+const ReportsSection = () => {
+  const recentReports = [
+    {
+      id: 1,
+      type: "Ponzi Scheme",
+      location: "Mumbai, Maharashtra",
+      riskLevel: "High",
+      timestamp: "2 hours ago",
+      description: "Fake investment app promising 50% returns in 30 days"
+    },
+    {
+      id: 2,
+      type: "Deepfake Video",
+      location: "Delhi, NCR",
+      riskLevel: "Medium",
+      timestamp: "4 hours ago",
+      description: "Manipulated celebrity endorsement for crypto scheme"
+    },
+    {
+      id: 3,
+      type: "Pump & Dump",
+      location: "Bangalore, Karnataka",
+      riskLevel: "High",
+      timestamp: "6 hours ago",
+      description: "Coordinated social media campaign for penny stocks"
+    },
+    {
+      id: 4,
+      type: "Fake Advisor",
+      location: "Chennai, Tamil Nadu",
+      riskLevel: "Medium",
+      timestamp: "8 hours ago",
+      description: "Unregistered advisor claiming SEBI certification"
+    }
+  ];
+
+  const getRiskColor = (level: string) => {
+    switch (level) {
+      case "High": return "destructive";
+      case "Medium": return "warning";
+      case "Low": return "success";
+      default: return "secondary";
+    }
+  };
+
+  return (
+    <section id="reports" className="py-20 px-4">
+      <div className="container mx-auto max-w-6xl">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl font-bold mb-4">
+            Recent Fraud <span className="text-gradient">Reports</span>
+          </h2>
+          <p className="text-xl text-muted-foreground">
+            Real-time fraud alerts from across India
+          </p>
+        </div>
+
+        <div className="grid lg:grid-cols-3 gap-8">
+          {/* Reports List */}
+          <div className="lg:col-span-2 space-y-4">
+            {recentReports.map((report) => (
+              <Card key={report.id} className="card-glass hover:scale-[1.02] transition-all duration-300">
+                <CardContent className="p-6">
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="flex items-center gap-3">
+                      <AlertTriangle className="h-5 w-5 text-destructive flex-shrink-0" />
+                      <div>
+                        <h3 className="font-semibold text-foreground">{report.type}</h3>
+                        <div className="flex items-center gap-4 text-sm text-muted-foreground mt-1">
+                          <span className="flex items-center gap-1">
+                            <MapPin className="h-3 w-3" />
+                            {report.location}
+                          </span>
+                          <span className="flex items-center gap-1">
+                            <Clock className="h-3 w-3" />
+                            {report.timestamp}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <Badge variant={getRiskColor(report.riskLevel) as any}>
+                      {report.riskLevel}
+                    </Badge>
+                  </div>
+                  <p className="text-muted-foreground text-sm leading-relaxed">
+                    {report.description}
+                  </p>
+                </CardContent>
+              </Card>
+            ))}
+            
+            <div className="text-center pt-4">
+              <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+                View All Reports
+              </Button>
+            </div>
+          </div>
+
+          {/* Report Form */}
+          <div className="space-y-6">
+            <Card className="card-glass">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <TrendingUp className="h-5 w-5 text-accent" />
+                  Report Fraud
+                </CardTitle>
+                <CardDescription>
+                  Help protect others by reporting suspicious activities
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <Button className="w-full btn-hero">
+                  Submit Report
+                </Button>
+                <div className="text-center text-sm text-muted-foreground">
+                  <p>Anonymous reporting available</p>
+                  <p className="mt-2">Your identity will be protected</p>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="card-glass">
+              <CardHeader>
+                <CardTitle className="text-lg">Quick Stats</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="flex justify-between items-center">
+                  <span className="text-muted-foreground">Today's Reports</span>
+                  <span className="font-bold text-destructive">12</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-muted-foreground">This Week</span>
+                  <span className="font-bold text-warning">89</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-muted-foreground">This Month</span>
+                  <span className="font-bold text-primary">347</span>
+                </div>
+                <div className="pt-2 border-t border-border">
+                  <div className="flex justify-between items-center">
+                    <span className="text-muted-foreground">Money Saved</span>
+                    <span className="font-bold text-success">₹2.4 Cr</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default ReportsSection;
