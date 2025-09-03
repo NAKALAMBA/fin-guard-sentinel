@@ -34,7 +34,7 @@ const StatsSection = () => {
   ];
 
   return (
-    <section className="py-20 px-4 bg-muted/30">
+    <section className="smooth-section py-32 px-4 relative overflow-hidden">
       <div className="container mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold mb-4">
@@ -45,17 +45,18 @@ const StatsSection = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {stats.map((stat, index) => (
-            <Card key={index} className="card-glass hover:scale-105 transition-all duration-300">
-              <CardContent className="p-6 text-center">
-                <div className="mb-4">
-                  <stat.icon className={`h-12 w-12 mx-auto ${stat.color}`} />
+            <Card key={index} className="card-glass hover:scale-105 hover:-translate-y-2 transition-all duration-500 group">
+              <CardContent className="p-8 text-center relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="mb-6 relative z-10">
+                  <stat.icon className={`h-16 w-16 mx-auto ${stat.color} group-hover:scale-110 transition-transform duration-300`} />
                 </div>
-                <div className="space-y-2">
-                  <p className="text-3xl font-bold text-gradient">{stat.value}</p>
-                  <p className="font-semibold text-foreground">{stat.label}</p>
-                  <p className="text-sm text-muted-foreground">{stat.description}</p>
+                <div className="space-y-3 relative z-10">
+                  <p className="text-4xl font-bold text-gradient">{stat.value}</p>
+                  <p className="font-semibold text-foreground text-lg">{stat.label}</p>
+                  <p className="text-muted-foreground leading-relaxed">{stat.description}</p>
                 </div>
               </CardContent>
             </Card>

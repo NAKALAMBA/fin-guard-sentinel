@@ -53,7 +53,7 @@ const ScanSection = () => {
   };
 
   return (
-    <section id="scan" className="py-20 px-4">
+    <section id="scan" className="smooth-section py-32 px-4 relative">
       <div className="container mx-auto max-w-4xl">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold mb-4">

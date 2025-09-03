@@ -49,7 +49,7 @@ const ReportsSection = () => {
   };
 
   return (
-    <section id="reports" className="py-20 px-4">
+    <section id="reports" className="smooth-section py-32 px-4 relative">
       <div className="container mx-auto max-w-6xl">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold mb-4">
@@ -64,13 +64,14 @@ const ReportsSection = () => {
           {/* Reports List */}
           <div className="lg:col-span-2 space-y-4">
             {recentReports.map((report) => (
-              <Card key={report.id} className="card-glass hover:scale-[1.02] transition-all duration-300">
-                <CardContent className="p-6">
-                  <div className="flex items-start justify-between mb-4">
-                    <div className="flex items-center gap-3">
-                      <AlertTriangle className="h-5 w-5 text-destructive flex-shrink-0" />
+              <Card key={report.id} className="card-glass hover:scale-[1.02] hover:-translate-y-1 transition-all duration-500 group">
+                <CardContent className="p-8 relative overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-br from-destructive/5 to-warning/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className="flex items-start justify-between mb-6 relative z-10">
+                    <div className="flex items-center gap-4">
+                      <AlertTriangle className="h-6 w-6 text-destructive flex-shrink-0 group-hover:scale-110 transition-transform duration-300" />
                       <div>
-                        <h3 className="font-semibold text-foreground">{report.type}</h3>
+                        <h3 className="font-semibold text-foreground text-lg">{report.type}</h3>
                         <div className="flex items-center gap-4 text-sm text-muted-foreground mt-1">
                           <span className="flex items-center gap-1">
                             <MapPin className="h-3 w-3" />
@@ -87,7 +88,7 @@ const ReportsSection = () => {
                       {report.riskLevel}
                     </Badge>
                   </div>
-                  <p className="text-muted-foreground text-sm leading-relaxed">
+                  <p className="text-muted-foreground leading-relaxed relative z-10">
                     {report.description}
                   </p>
                 </CardContent>

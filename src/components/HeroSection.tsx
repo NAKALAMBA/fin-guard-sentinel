@@ -4,7 +4,7 @@ import heroImage from "@/assets/hero-security.jpg";
 
 const HeroSection = () => {
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden particle-bg">
       {/* Background with gradient overlay */}
       <div className="absolute inset-0 z-0">
         <img 
@@ -15,11 +15,12 @@ const HeroSection = () => {
         <div className="absolute inset-0 bg-gradient-to-br from-background/90 via-background/70 to-primary/20"></div>
       </div>
 
-      {/* Floating elements */}
+      {/* Enhanced floating elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-10 w-20 h-20 bg-primary/20 rounded-full blur-xl animate-float"></div>
-        <div className="absolute bottom-32 right-20 w-32 h-32 bg-accent/20 rounded-full blur-xl animate-float" style={{ animationDelay: '2s' }}></div>
-        <div className="absolute top-1/2 right-10 w-16 h-16 bg-success/20 rounded-full blur-xl animate-float" style={{ animationDelay: '4s' }}></div>
+        <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-r from-primary/30 to-accent/20 rounded-full blur-2xl animate-float"></div>
+        <div className="absolute bottom-32 right-20 w-48 h-48 bg-gradient-to-r from-accent/20 to-primary-glow/30 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute top-1/2 right-10 w-24 h-24 bg-gradient-to-r from-success/30 to-accent/20 rounded-full blur-xl animate-float" style={{ animationDelay: '4s' }}></div>
+        <div className="absolute top-1/3 left-1/4 w-20 h-20 bg-gradient-to-r from-primary-glow/40 to-primary/20 rounded-full blur-xl animate-float" style={{ animationDelay: '6s' }}></div>
       </div>
 
       <div className="relative z-10 container mx-auto px-4">
