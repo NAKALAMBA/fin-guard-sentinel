@@ -1,5 +1,6 @@
-import { ArrowRight, Shield, Zap, Eye } from "lucide-react";
+import { ArrowRight, Shield, Zap, Eye, TrendingUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 import heroImage from "@/assets/hero-security.jpg";
 
 const HeroSection = () => {
@@ -45,41 +46,71 @@ const HeroSection = () => {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-            <Button size="lg" className="btn-hero text-lg px-8 py-6">
-              Start Free Scan
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
-            <Button 
-              size="lg" 
-              variant="outline" 
-              className="text-lg px-8 py-6 border-primary text-primary hover:bg-primary hover:text-primary-foreground"
-            >
-              Watch Demo
-            </Button>
+            <Link to="/scan">
+              <Button size="lg" className="btn-hero text-lg px-8 py-6">
+                Start Free Scan
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
+            <Link to="/about">
+              <Button 
+                size="lg" 
+                variant="outline" 
+                className="text-lg px-8 py-6 border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+              >
+                Learn More
+              </Button>
+            </Link>
           </div>
 
           {/* Features grid */}
           <div className="grid md:grid-cols-3 gap-6 max-w-3xl mx-auto">
-            <div className="card-glass rounded-2xl p-6 hover:scale-105 transition-transform duration-300">
-              <Shield className="h-12 w-12 text-primary mx-auto mb-4" />
-              <h3 className="text-lg font-semibold mb-2">Advisor Verification</h3>
-              <p className="text-muted-foreground text-sm">
-                Instantly verify SEBI registration and credentials
-              </p>
+            <Link to="/scan" className="group">
+              <div className="card-glass rounded-2xl p-6 hover:scale-105 transition-transform duration-300 cursor-pointer">
+                <Shield className="h-12 w-12 text-primary mx-auto mb-4 group-hover:scale-110 transition-transform" />
+                <h3 className="text-lg font-semibold mb-2">Advisor Verification</h3>
+                <p className="text-muted-foreground text-sm">
+                  Instantly verify SEBI registration and credentials
+                </p>
+              </div>
+            </Link>
+            <Link to="/reports" className="group">
+              <div className="card-glass rounded-2xl p-6 hover:scale-105 transition-transform duration-300 cursor-pointer">
+                <Zap className="h-12 w-12 text-accent mx-auto mb-4 group-hover:scale-110 transition-transform" />
+                <h3 className="text-lg font-semibold mb-2">Real-time Detection</h3>
+                <p className="text-muted-foreground text-sm">
+                  AI algorithms spot fraud patterns instantly
+                </p>
+              </div>
+            </Link>
+            <Link to="/dashboard" className="group">
+              <div className="card-glass rounded-2xl p-6 hover:scale-105 transition-transform duration-300 cursor-pointer">
+                <Eye className="h-12 w-12 text-success mx-auto mb-4 group-hover:scale-110 transition-transform" />
+                <h3 className="text-lg font-semibold mb-2">Risk Assessment</h3>
+                <p className="text-muted-foreground text-sm">
+                  Get detailed risk scores and explanations
+                </p>
+              </div>
+            </Link>
+          </div>
+
+          {/* Quick Stats */}
+          <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto">
+            <div className="text-center">
+              <div className="text-2xl font-bold text-gradient">10K+</div>
+              <div className="text-sm text-muted-foreground">Verified Advisors</div>
             </div>
-            <div className="card-glass rounded-2xl p-6 hover:scale-105 transition-transform duration-300">
-              <Zap className="h-12 w-12 text-accent mx-auto mb-4" />
-              <h3 className="text-lg font-semibold mb-2">Real-time Detection</h3>
-              <p className="text-muted-foreground text-sm">
-                AI algorithms spot fraud patterns instantly
-              </p>
+            <div className="text-center">
+              <div className="text-2xl font-bold text-gradient">2.8K</div>
+              <div className="text-sm text-muted-foreground">Frauds Detected</div>
             </div>
-            <div className="card-glass rounded-2xl p-6 hover:scale-105 transition-transform duration-300">
-              <Eye className="h-12 w-12 text-success mx-auto mb-4" />
-              <h3 className="text-lg font-semibold mb-2">Risk Assessment</h3>
-              <p className="text-muted-foreground text-sm">
-                Get detailed risk scores and explanations
-              </p>
+            <div className="text-center">
+              <div className="text-2xl font-bold text-gradient">50K+</div>
+              <div className="text-sm text-muted-foreground">Protected Users</div>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl font-bold text-gradient">98.5%</div>
+              <div className="text-sm text-muted-foreground">Accuracy Rate</div>
             </div>
           </div>
         </div>

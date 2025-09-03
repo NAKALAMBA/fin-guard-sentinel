@@ -5,7 +5,8 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
-import { Search, AlertTriangle, CheckCircle, XCircle, Loader2 } from "lucide-react";
+import { Search, AlertTriangle, CheckCircle, XCircle, Loader2, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 interface ScanResult {
   advisorVerified: boolean;
@@ -59,50 +60,36 @@ const ScanSection = () => {
           <h2 className="text-4xl font-bold mb-4">
             AI Fraud <span className="text-gradient">Scanner</span>
           </h2>
-          <p className="text-xl text-muted-foreground">
+          <p className="text-xl text-muted-foreground mb-6">
             Enter advisor details and content to check for potential fraud
           </p>
+          <Link to="/scan">
+            <Button className="btn-hero">
+              Try Full Scanner
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </Button>
+          </Link>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-8">
-          {/* Scan Form */}
+          {/* Quick Scan Form */}
           <Card className="card-glass">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Search className="h-5 w-5 text-primary" />
-                Fraud Detection Scan
+                Quick Fraud Check
               </CardTitle>
               <CardDescription>
-                Enter the advisor information and content you want to verify
+                Basic fraud detection for immediate results
               </CardDescription>
             </CardHeader>
-            <CardContent className="space-y-6">
+            <CardContent className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="advisorName">Advisor Name</Label>
-                <Input
-                  id="advisorName"
-                  placeholder="Enter advisor's full name"
-                  value={formData.advisorName}
-                  onChange={(e) => setFormData({ ...formData, advisorName: e.target.value })}
-                />
-              </div>
-              
-              <div className="space-y-2">
-                <Label htmlFor="advisorCode">SEBI Registration Code</Label>
-                <Input
-                  id="advisorCode"
-                  placeholder="Enter SEBI registration number"
-                  value={formData.advisorCode}
-                  onChange={(e) => setFormData({ ...formData, advisorCode: e.target.value })}
-                />
-              </div>
-              
-              <div className="space-y-2">
-                <Label htmlFor="content">Content to Analyze</Label>
+                <Label htmlFor="quickContent">Content to Analyze</Label>
                 <Textarea
-                  id="content"
-                  placeholder="Paste the investment advice, message, or content you want to verify..."
-                  className="min-h-32"
+                  id="quickContent"
+                  placeholder="Paste investment advice or message to verify..."
+                  className="min-h-24"
                   value={formData.content}
                   onChange={(e) => setFormData({ ...formData, content: e.target.value })}
                 />
@@ -121,7 +108,7 @@ const ScanSection = () => {
                 ) : (
                   <>
                     <Search className="mr-2 h-4 w-4" />
-                    Scan for Fraud
+                    Quick Scan
                   </>
                 )}
               </Button>
@@ -140,7 +127,12 @@ const ScanSection = () => {
               {!scanResult && !isScanning && (
                 <div className="text-center py-12 text-muted-foreground">
                   <Search className="h-12 w-12 mx-auto mb-4 opacity-50" />
-                  <p>Enter content above and click "Scan for Fraud" to begin analysis</p>
+                  <p className="mb-4">Enter content above and click "Quick Scan"</p>
+                  <Link to="/scan">
+                    <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+                      Advanced Scanner
+                    </Button>
+                  </Link>
                 </div>
               )}
 
@@ -154,26 +146,6 @@ const ScanSection = () => {
 
               {scanResult && (
                 <div className="space-y-6">
-                  {/* Advisor Verification */}
-                  <div className="flex items-center justify-between p-4 bg-muted/50 rounded-lg">
-                    <div className="flex items-center gap-3">
-                      {scanResult.advisorVerified ? (
-                        <CheckCircle className="h-5 w-5 text-success" />
-                      ) : (
-                        <XCircle className="h-5 w-5 text-destructive" />
-                      )}
-                      <div>
-                        <p className="font-semibold">{scanResult.advisorName}</p>
-                        <p className="text-sm text-muted-foreground">
-                          {scanResult.advisorVerified ? "SEBI Verified" : "Not Verified"}
-                        </p>
-                      </div>
-                    </div>
-                    <Badge variant={scanResult.advisorVerified ? "default" : "destructive"}>
-                      {scanResult.advisorVerified ? "Verified" : "Unverified"}
-                    </Badge>
-                  </div>
-
                   {/* Risk Score */}
                   <div className="space-y-3">
                     <div className="flex items-center justify-between">
@@ -209,6 +181,20 @@ const ScanSection = () => {
                     <p className="text-sm text-muted-foreground leading-relaxed">
                       {scanResult.explanation}
                     </p>
+                  </div>
+
+                  {/* Actions */}
+                  <div className="flex gap-2 pt-4">
+                    <Link to="/scan" className="flex-1">
+                      <Button className="w-full btn-hero">
+                        Detailed Scan
+                      </Button>
+                    </Link>
+                    <Link to="/reports" className="flex-1">
+                      <Button variant="outline" className="w-full border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+                        Report Fraud
+                      </Button>
+                    </Link>
                   </div>
                 </div>
               )}

@@ -1,7 +1,8 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { AlertTriangle, Clock, MapPin, TrendingUp } from "lucide-react";
+import { AlertTriangle, Clock, MapPin, TrendingUp, ArrowRight, Eye } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const ReportsSection = () => {
   const recentReports = [
@@ -28,14 +29,6 @@ const ReportsSection = () => {
       riskLevel: "High",
       timestamp: "6 hours ago",
       description: "Coordinated social media campaign for penny stocks"
-    },
-    {
-      id: 4,
-      type: "Fake Advisor",
-      location: "Chennai, Tamil Nadu",
-      riskLevel: "Medium",
-      timestamp: "8 hours ago",
-      description: "Unregistered advisor claiming SEBI certification"
     }
   ];
 
@@ -55,9 +48,15 @@ const ReportsSection = () => {
           <h2 className="text-4xl font-bold mb-4">
             Recent Fraud <span className="text-gradient">Reports</span>
           </h2>
-          <p className="text-xl text-muted-foreground">
+          <p className="text-xl text-muted-foreground mb-6">
             Real-time fraud alerts from across India
           </p>
+          <Link to="/reports">
+            <Button className="btn-hero">
+              View All Reports
+              <Eye className="ml-2 h-4 w-4" />
+            </Button>
+          </Link>
         </div>
 
         <div className="grid lg:grid-cols-3 gap-8">
@@ -96,13 +95,16 @@ const ReportsSection = () => {
             ))}
             
             <div className="text-center pt-4">
-              <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-                View All Reports
-              </Button>
+              <Link to="/reports">
+                <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+                  View All Reports
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </Link>
             </div>
           </div>
 
-          {/* Report Form */}
+          {/* Report Actions */}
           <div className="space-y-6">
             <Card className="card-glass">
               <CardHeader>
@@ -115,9 +117,12 @@ const ReportsSection = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
-                <Button className="w-full btn-hero">
-                  Submit Report
-                </Button>
+                <Link to="/reports">
+                  <Button className="w-full btn-hero">
+                    Submit Report
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </Link>
                 <div className="text-center text-sm text-muted-foreground">
                   <p>Anonymous reporting available</p>
                   <p className="mt-2">Your identity will be protected</p>
@@ -127,7 +132,7 @@ const ReportsSection = () => {
 
             <Card className="card-glass">
               <CardHeader>
-                <CardTitle className="text-lg">Quick Stats</CardTitle>
+                <CardTitle className="text-lg">Live Statistics</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="flex justify-between items-center">
@@ -148,6 +153,11 @@ const ReportsSection = () => {
                     <span className="font-bold text-success">₹2.4 Cr</span>
                   </div>
                 </div>
+                <Link to="/reports">
+                  <Button variant="outline" className="w-full mt-4 border-accent text-accent hover:bg-accent hover:text-accent-foreground">
+                    View Analytics
+                  </Button>
+                </Link>
               </CardContent>
             </Card>
           </div>
